@@ -1,44 +1,44 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | BookNest</title>
-  <link rel="stylesheet" href="style.css">
+    <title>Login</title>
 </head>
-<body>
-  <header class="navbar">
-    <a href="index.html" class="logo">BookNest 📚</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="registration.html">Register</a>
-    </nav>
-  </header>
+<body bgcolor="white" align="center">
 
-  <main class="page-section">
-    <form id="login-form" class="form-card">
-      <h1>Welcome Back!</h1>
-      <p class="muted">Login to your BookNest account.</p>
+    <h2>LOGIN PAGE</h2>
 
-      <label for="login-email">Email Address</label>
-      <input id="login-email" type="email" required placeholder="Enter your email">
+    <form onsubmit="return loginUser()">
+        <label>Username:</label>
+        <input type="text" id="username" required>
+        <br><br>
 
-      <label for="login-password">Password</label>
-      <input id="login-password" type="password" required minlength="6" placeholder="Enter password">
+        <label>Password:</label>
+        <input type="password" id="password" required>
+        <br><br>
 
-      <button type="submit" class="btn">Login</button>
-      <p id="login-message" class="message"></p>
-
-      <p>New here? <a href="registration.html">Create an account</a></p>
+        <input type="submit" value="Login">
+        <input type="reset" value="Reset">
     </form>
-  </main>
 
-  <footer>
-    <p>Satya Prakash | Roll No. 2501920110332</p>
-    <p>© 2026 BookNest. All rights reserved.</p>
-  </footer>
+    <p id="message"></p>
 
-  <script src="script.js"></script>
+    <script>
+        function loginUser() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username.trim() === "" || password.trim() === "") {
+                alert("Please enter username and password");
+                return false;
+            }
+
+            document.getElementById("message").innerHTML =
+                "Login form submitted successfully (demo).";
+            return false;
+        }
+    </script>
+
+    <hr>
+    <footer>Satya Prakash | Roll No. 2501920110332</footer>
 </body>
 </html>
