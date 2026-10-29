@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | BookNest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="logo">BookNest 📚</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="page-section">
+    <form id="register-form" class="form-card">
+      <h1>Create Account</h1>
+      <p class="muted">Join BookNest today.</p>
+
+      <label for="full-name">Full Name</label>
+      <input id="full-name" required placeholder="Enter your full name">
+
+      <label for="register-email">Email Address</label>
+      <input id="register-email" type="email" required placeholder="Enter your email">
+
+      <label for="password">Password</label>
+      <input id="password" type="password" minlength="6" required placeholder="At least 6 characters">
+
+      <label for="confirm-password">Confirm Password</label>
+      <input id="confirm-password" type="password" minlength="6" required placeholder="Re-enter password">
+
+      <button type="submit" class="btn">Register</button>
+      <p id="register-message" class="message"></p>
+
+      <p>Already registered? <a href="login.html">Login here</a></p>
+    </form>
+  </main>
+
+  <footer>
+    <p>Satya Prakash | Roll No. 2501920110332</p>
+    <p>© 2026 BookNest. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
