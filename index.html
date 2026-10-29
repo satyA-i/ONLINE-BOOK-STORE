@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookNest | Online Book Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="logo">BookNest 📚</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#books">Books</a>
+      <a href="cart.html">Cart 🛒 <span id="cart-count">0</span></a>
+      <a href="login.html">Login</a>
+      <a href="registration.html">Register</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="tagline">YOUR NEXT CHAPTER STARTS HERE</p>
+      <h1>Discover Your Next<br>Favourite Book.</h1>
+      <p>Explore amazing books, discover new ideas and make reading a habit.</p>
+      <a href="#books" class="btn">Explore Books</a>
+    </div>
+    <div class="hero-icon">📚</div>
+  </section>
+
+  <section class="features">
+    <div>📖 <h3>Wide Collection</h3><p>Books for every reader.</p></div>
+    <div>💰 <h3>Great Prices</h3><p>Books at affordable prices.</p></div>
+    <div>🚚 <h3>Easy Shopping</h3><p>Simple shopping experience.</p></div>
+  </section>
+
+  <main id="books" class="catalogue">
+    <h2>Explore Our Books</h2>
+    <p class="subtitle">Find the perfect book for your journey.</p>
+
+    <div class="filters">
+      <input id="search" type="search" placeholder="Search books or authors...">
+      <select id="category">
+        <option value="All">All Categories</option>
+        <option value="Programming">Programming</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Education">Education</option>
+        <option value="Self Help">Self Help</option>
+      </select>
+      <select id="sort">
+        <option value="default">Sort Books</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+      </select>
+    </div>
+
+    <div id="book-list" class="book-grid"></div>
+  </main>
+
+  <footer>
+    <h3>BookNest 📚</h3>
+    <p>Your destination for books and knowledge.</p>
+    <p>Designed by <strong>Satya Prakash</strong> |
+       Roll No. <strong>2501920110332</strong></p>
+    <p>© 2026 BookNest. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
