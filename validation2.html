@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email and Phone Validation</title>
+</head>
+<body>
+    <h2>Email and Phone Validation</h2>
+
+    <form onsubmit="return validateDetails()">
+        Email:
+        <input type="text" id="email" required>
+        <br><br>
+
+        Phone:
+        <input type="text" id="phone" required>
+        <br><br>
+
+        <input type="submit" value="Validate">
+    </form>
+
+    <script>
+        function validateDetails() {
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let phonePattern = /^[0-9]{10}$/;
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email");
+                return false;
+            }
+
+            if (!phonePattern.test(phone)) {
+                alert("Phone number must be 10 digits");
+                return false;
+            }
+
+            alert("Details are valid");
+            return false;
+        }
+    </script>
+
+    <hr>
+    <footer>Satya Prakash | Roll No. 2501920110332</footer>
+</body>
+</html>
