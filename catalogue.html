@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Catalogue</title>
+    <style>
+        table {
+            width: 95%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightblue;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body bgcolor="white" align="center">
+
+    <h2>BOOK CATALOGUE</h2>
+
+    <table align="center">
+        <tr>
+            <th>Book</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+
+        <tr id="wt">
+            <td>📘</td>
+            <td>Web Technology</td>
+            <td>Uttam K. Roy</td>
+            <td>Oxford</td>
+            <td>₹450</td>
+            <td><button onclick="addBook('Web Technology',450)">Add to Cart</button></td>
+        </tr>
+
+        <tr id="php">
+            <td>📗</td>
+            <td>PHP Programming</td>
+            <td>Rasmus Lerdorf</td>
+            <td>Tech Press</td>
+            <td>₹350</td>
+            <td><button onclick="addBook('PHP Programming',350)">Add to Cart</button></td>
+        </tr>
+
+        <tr id="ai">
+            <td>📙</td>
+            <td>Artificial Intelligence</td>
+            <td>Stuart Russell</td>
+            <td>Pearson</td>
+            <td>₹550</td>
+            <td><button onclick="addBook('Artificial Intelligence',550)">Add to Cart</button></td>
+        </tr>
+
+        <tr id="html">
+            <td>📕</td>
+            <td>HTML and CSS</td>
+            <td>Jon Duckett</td>
+            <td>Wiley</td>
+            <td>₹300</td>
+            <td><button onclick="addBook('HTML and CSS',300)">Add to Cart</button></td>
+        </tr>
+    </table>
+
+    <p id="message"></p>
+    <p><a href="cart.html">Open Shopping Cart</a></p>
+
+    <script>
+        function addBook(name, price) {
+            let cart = JSON.parse(localStorage.getItem("bookCart")) || [];
+            let book = cart.find(item => item.name === name);
+
+            if (book) {
+                book.quantity++;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+
+            localStorage.setItem("bookCart", JSON.stringify(cart));
+            document.getElementById("message").innerHTML =
+                name + " added to cart successfully!";
+        }
+    </script>
+
+    <hr>
+    <footer>Satya Prakash | Roll No. 2501920110332</footer>
+</body>
+</html>
