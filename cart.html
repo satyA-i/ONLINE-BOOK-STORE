@@ -1,42 +1,129 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping Cart | BookNest</title>
-  <link rel="stylesheet" href="style.css">
+    <title>Shopping Cart</title>
+    <style>
+        table {
+            width: 90%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightblue;
+        }
+    </style>
 </head>
-<body>
-  <header class="navbar">
-    <a href="index.html" class="logo">BookNest 📚</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="index.html#books">Books</a>
-      <a href="cart.html">Cart 🛒 <span id="cart-count">0</span></a>
-      <a href="login.html">Login</a>
-    </nav>
-  </header>
+<body bgcolor="white" align="center">
 
-  <main class="page-section">
-    <h1>Your Shopping Cart</h1>
-    <p class="subtitle">Review your selected books.</p>
-    <div id="cart-items"></div>
+    <h2>SHOPPING CART</h2>
 
-    <div class="cart-total">
-      <p>Total: <strong id="cart-total">₹0</strong></p>
-      <br>
-      <a href="index.html#books" class="btn">Continue Shopping</a>
-      <a href="checkout.html" class="btn">Checkout</a>
-    </div>
-  </main>
+    <table align="center">
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="cartItems"></tbody>
+    </table>
 
-  <footer>
-    <h3>BookNest 📚</h3>
-    <p>Satya Prakash | Roll No. 2501920110332</p>
-    <p>© 2026 BookNest. All rights reserved.</p>
-  </footer>
+    <h3 id="grandTotal">Grand Total: ₹0</h3>
 
-  <script src="script.js"></script>
+    <button onclick="clearCart()">Clear Cart</button>
+    <button onclick="checkout()">Place Order</button>
+
+    <p id="message"></p>
+
+    <script>
+        function displayCart() {
+            let cart = JSON.parse(localStorage.getItem("bookCart")) || [];
+            let table = document.getElementById("cartItems");
+            let total = 0;
+
+            table.innerHTML = "";
+
+            if (cart.length === 0) {
+                table.innerHTML =
+                    '<tr><td colspan="5">Your cart is empty</td></tr>';
+            }
+
+            cart.forEach((book, index) => {
+                let amount = book.price * book.quantity;
+                total += amount;
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${book.name}</td>
+                        <td>₹${book.price}</td>
+                        <td>
+                            <button onclick="changeQuantity(${index},-1)">-</button>
+                            ${book.quantity}
+                            <button onclick="changeQuantity(${index},1)">+</button>
+                        </td>
+                        <td>₹${amount}</td>
+                        <td><button onclick="removeBook(${index})">Remove</button></td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById("grandTotal").innerHTML =
+                "Grand Total: ₹" + total;
+        }
+
+        function changeQuantity(index, change) {
+            let cart = JSON.parse(localStorage.getItem("bookCart")) || [];
+
+            if (!cart[index]) return;
+
+            cart[index].quantity += change;
+
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+
+            localStorage.setItem("bookCart", JSON.stringify(cart));
+            displayCart();
+        }
+
+        function removeBook(index) {
+            let cart = JSON.parse(localStorage.getItem("bookCart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("bookCart", JSON.stringify(cart));
+            displayCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem("bookCart");
+            displayCart();
+            document.getElementById("message").innerHTML = "Cart cleared.";
+        }
+
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem("bookCart")) || [];
+
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            alert("Order placed successfully! (Demo only)");
+            localStorage.removeItem("bookCart");
+            displayCart();
+        }
+
+        displayCart();
+    </script>
+
+    <hr>
+    <footer>Satya Prakash | Roll No. 2501920110332</footer>
 </body>
 </html>
